@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>touch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	.box{
+		width: 300px;
+		height: 400px;
+		background-color: red;
+	}
+</style>
+<body>
+	
+	<div class="box"></div>
+	<div class="show">ontouchstart： <span id="touch-point"></span></div>
+	<div class="show">ontouchmove： <span id="show-point"></span></div>
+</body>
+<script>
+	var box = document.querySelector('.box')
+	var touch = document.querySelector('#touch-point')
+	var text = document.querySelector('#show-point')
+
+	box.ontouchstart = function(e) {
+		touch.innerHTML = e.changedTouches[0].clientX + '-' + e.changedTouches[0].clientY
+		box.ontouchmove = function(e) {
+			console.log(e)
+			text.innerHTML = e.changedTouches[0].clientX + '-' + e.changedTouches[0].clientY
+		}
+		box.ontouchend = function(e) {
+			console.log(e)
+		}
+	}
+</script>
+</html>
